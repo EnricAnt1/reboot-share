@@ -10,7 +10,6 @@ import {
   FilterIcon,
   CloseIcon,
 } from './Icons';
-import { STATUSES } from '../data/devices';
 
 export function DeviceTable({
   devices,
@@ -135,11 +134,10 @@ export function DeviceTable({
               className="filter-select"
             >
               <option value="Tots">Tots els estats</option>
-              {STATUSES.map((status) => (
-                <option key={status} value={status}>
-                  {status}
-                </option>
-              ))}
+              <option value="En prova">En prova</option>
+              <option value="Apte">Apte</option>
+              <option value="Diagnosi">Diagnosi</option>
+              <option value="Prestat">Prestat</option>
             </select>
           </div>
 
@@ -270,11 +268,10 @@ export function DeviceTable({
                       className="inline-status-select"
                       title="Canviar estat d'aquest dispositiu"
                     >
-                      {STATUSES.map((st) => (
-                        <option key={st} value={st}>
-                          {st}
-                        </option>
-                      ))}
+                      <option value="En prova">En prova</option>
+                      <option value="Apte">Apte</option>
+                      <option value="Diagnosi">Diagnosi</option>
+                      <option value="Prestat">Prestat</option>
                     </select>
                   </td>
                   <td className="cell-actions th-right">

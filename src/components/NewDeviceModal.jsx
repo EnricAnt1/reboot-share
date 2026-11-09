@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { STATUSES } from '../data/devices';
 import { CloseIcon, PlusIcon } from './Icons';
 
 export function NewDeviceModal({ isOpen, onClose, onAddDevice, existingIds }) {
@@ -96,9 +95,8 @@ export function NewDeviceModal({ isOpen, onClose, onAddDevice, existingIds }) {
               >
                 <option value="Portàtil">Portàtil</option>
                 <option value="Tauleta">Tauleta</option>
-                <option value="Ordinador de sobretaula">Ordinador de sobretaula</option>
-                <option value="Monitor">Monitor</option>
-                <option value="Altres">Altres</option>
+                <option value="Sobretaula">Sobretaula</option>
+                <option value="Perifèrics">Perifèrics</option>
               </select>
             </div>
 
@@ -112,11 +110,10 @@ export function NewDeviceModal({ isOpen, onClose, onAddDevice, existingIds }) {
                 onChange={(e) => setStatus(e.target.value)}
                 className="form-select"
               >
-                {STATUSES.map((st) => (
-                  <option key={st} value={st}>
-                    {st}
-                  </option>
-                ))}
+                <option value="En prova">En prova</option>
+                <option value="Apte">Apte</option>
+                <option value="Diagnosi">Diagnosi</option>
+                <option value="Prestat">Prestat</option>
               </select>
             </div>
           </div>
