@@ -64,10 +64,10 @@ export function DeviceRegistrationForm({ devices, onAddDevice }) {
             <label htmlFor="reg-device-id" className="form-group-label">
               Identificador (ID)
             </label>
-            <div className="auto-id-display">
-              <span className="auto-id-badge">{nextId}</span>
-              <span className="auto-id-caption">Generat automàticament</span>
+            <div className="form-control-wrap">
+              <span id="reg-device-id" className="auto-id-badge">{nextId}</span>
             </div>
+            <span className="form-hint-caption">Generat automàticament</span>
           </div>
 
           {/* Selector de tipus */}
@@ -75,7 +75,7 @@ export function DeviceRegistrationForm({ devices, onAddDevice }) {
             <label htmlFor="reg-device-type" className="form-group-label">
               Tipus de dispositiu <span className="label-required">*</span>
             </label>
-            <div className="select-input-container">
+            <div className="form-control-wrap select-input-container">
               <select
                 id="reg-device-type"
                 value={type}
@@ -94,28 +94,34 @@ export function DeviceRegistrationForm({ devices, onAddDevice }) {
                 <option value="Perifèrics">Perifèrics</option>
               </select>
             </div>
-            {error && (
+            {error ? (
               <p id="type-error-msg" className="field-error-message" role="alert">
                 {error}
               </p>
+            ) : (
+              <span className="form-hint-caption">Camp obligatori</span>
             )}
           </div>
 
           {/* Estat inicial */}
           <div className="form-group">
             <span className="form-group-label">Estat inicial</span>
-            <div className="status-fixed-box">
+            <div className="form-control-wrap status-fixed-box">
               <StatusBadge status="En prova" />
-              <span className="status-fixed-hint">Per defecte per a nous ingressos</span>
             </div>
+            <span className="form-hint-caption">Per defecte per a nous ingressos</span>
           </div>
 
           {/* Botó de desar */}
           <div className="form-group form-action-group">
-            <button type="submit" className="btn btn-primary btn-register">
-              <PlusIcon />
-              <span>Registrar dispositiu</span>
-            </button>
+            <span className="form-group-label form-label-spacer" aria-hidden="true">&nbsp;</span>
+            <div className="form-control-wrap">
+              <button type="submit" className="btn btn-primary btn-register">
+                <PlusIcon />
+                <span>Registrar dispositiu</span>
+              </button>
+            </div>
+            <span className="form-hint-caption form-hint-spacer" aria-hidden="true">&nbsp;</span>
           </div>
         </div>
       </form>
