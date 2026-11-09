@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { INITIAL_DEVICES } from './data/devices';
 import { Header } from './components/Header';
 import { StatsCards } from './components/StatsCards';
+import { DeviceRegistrationForm } from './components/DeviceRegistrationForm';
 import { DeviceTable } from './components/DeviceTable';
 import { NewDeviceModal } from './components/NewDeviceModal';
 import './App.css';
@@ -78,6 +79,11 @@ export default function App() {
           devices={devices}
           activeFilter={activeFilter}
           onFilterChange={setActiveFilter}
+        />
+
+        <DeviceRegistrationForm
+          devices={devices}
+          onAddDevice={handleAddDevice}
         />
 
         <DeviceTable

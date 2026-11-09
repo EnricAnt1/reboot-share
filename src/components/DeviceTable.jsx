@@ -4,6 +4,7 @@ import {
   LaptopIcon,
   TabletIcon,
   DesktopIcon,
+  PeripheralIcon,
   GenericDeviceIcon,
   SearchIcon,
   FilterIcon,
@@ -83,6 +84,9 @@ export function DeviceTable({
     }
     if (lower.includes('sobretaula') || lower.includes('ordinador')) {
       return <DesktopIcon className="device-type-icon" />;
+    }
+    if (lower.includes('perifèric') || lower.includes('periferic')) {
+      return <PeripheralIcon className="device-type-icon" />;
     }
     return <GenericDeviceIcon className="device-type-icon" />;
   };
