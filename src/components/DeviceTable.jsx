@@ -236,7 +236,7 @@ export function DeviceTable({
                 </div>
               </th>
               <th scope="col" className="th-center">
-                <span>Modificar estat</span>
+                <span>Canviar estat</span>
               </th>
               <th scope="col" className="th-right">
                 <span>Acció</span>

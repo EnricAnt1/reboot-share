@@ -1,6 +1,13 @@
 import { LogoIcon, PlusIcon, ResetIcon } from './Icons';
 
-export function Header({ onOpenNewModal, onResetData, isDefaultData }) {
+export function Header({ devices = [], onOpenNewModal, onResetData, isDefaultData }) {
+  const statusCounts = {
+    'En prova': devices.filter((d) => d.status === 'En prova').length,
+    'Apte': devices.filter((d) => d.status === 'Apte').length,
+    'Diagnosi': devices.filter((d) => d.status === 'Diagnosi').length,
+    'Prestat': devices.filter((d) => d.status === 'Prestat').length,
+  };
+
   return (
     <header className="app-header">
       <div className="header-brand-container">
@@ -16,6 +23,29 @@ export function Header({ onOpenNewModal, onResetData, isDefaultData }) {
             </p>
           </div>
         </div>
+      </div>
+
+      <div className="header-status-summary" aria-label="Recompte ràpid per estat a la capçalera">
+        <span className="header-status-item status-item-prova" title="Dispositius En prova">
+          <span className="header-status-dot dot-prova"></span>
+          <span className="status-label">En prova:</span>
+          <strong>{statusCounts['En prova']}</strong>
+        </span>
+        <span className="header-status-item status-item-apte" title="Dispositius Aptes">
+          <span className="header-status-dot dot-apte"></span>
+          <span className="status-label">Apte:</span>
+          <strong>{statusCounts['Apte']}</strong>
+        </span>
+        <span className="header-status-item status-item-diagnosi" title="Dispositius en Diagnosi">
+          <span className="header-status-dot dot-diagnosi"></span>
+          <span className="status-label">Diagnosi:</span>
+          <strong>{statusCounts['Diagnosi']}</strong>
+        </span>
+        <span className="header-status-item status-item-prestat" title="Dispositius Prestats">
+          <span className="header-status-dot dot-prestat"></span>
+          <span className="status-label">Prestat:</span>
+          <strong>{statusCounts['Prestat']}</strong>
+        </span>
       </div>
 
       <div className="header-actions">

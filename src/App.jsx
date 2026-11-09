@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { INITIAL_DEVICES } from './data/devices';
 import { Header } from './components/Header';
 import { StatsCards } from './components/StatsCards';
@@ -7,11 +7,36 @@ import { DeviceTable } from './components/DeviceTable';
 import { NewDeviceModal } from './components/NewDeviceModal';
 import './App.css';
 
+const STORAGE_KEY = 'reboot_share_devices_inventory';
+
 export default function App() {
-  const [devices, setDevices] = useState(INITIAL_DEVICES);
+  const [devices, setDevices] = useState(() => {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          return parsed;
+        }
+      }
+    } catch (error) {
+      console.error('Error llegint dades de localStorage:', error);
+    }
+    return INITIAL_DEVICES;
+  });
+
   const [activeFilter, setActiveFilter] = useState('Tots');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState(null);
+
+  // Desa automàticament qualsevol canvi a localStorage
+  useEffect(() => {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(devices));
+    } catch (error) {
+      console.error('Error desant dades a localStorage:', error);
+    }
+  }, [devices]);
 
   const showToast = (message) => {
     setToastMessage(message);
@@ -44,6 +69,11 @@ export default function App() {
 
   const handleResetData = () => {
     setDevices(INITIAL_DEVICES);
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(INITIAL_DEVICES));
+    } catch (error) {
+      console.error('Error desant dades a localStorage:', error);
+    }
     setActiveFilter('Tots');
     showToast("S'han restablert les dades de mostra originals.");
   };
@@ -60,6 +90,7 @@ export default function App() {
   return (
     <div className="app-layout">
       <Header
+        devices={devices}
         onOpenNewModal={() => setIsModalOpen(true)}
         onResetData={handleResetData}
         isDefaultData={isDefaultData}
@@ -75,17 +106,20 @@ export default function App() {
           </div>
         </div>
 
+        {/* Recompte de dispositius per estat a la part superior */}
         <StatsCards
           devices={devices}
           activeFilter={activeFilter}
           onFilterChange={setActiveFilter}
         />
 
+        {/* Formulari de registre de nou dispositiu */}
         <DeviceRegistrationForm
           devices={devices}
           onAddDevice={handleAddDevice}
         />
 
+        {/* Taula d'inventari amb desplegable per canviar l'estat de cada dispositiu */}
         <DeviceTable
           devices={devices}
           activeStatusFilter={activeFilter}
@@ -100,7 +134,7 @@ export default function App() {
           <p>
             <strong>REBOOT Share</strong> — Projecte de reutilització tecnològica i economia circular.
           </p>
-          <span className="footer-note">Dades locals en memòria · Sense base de dades</span>
+          <span className="footer-note">Dades persistides a localStorage (navegador local)</span>
         </div>
       </footer>
 

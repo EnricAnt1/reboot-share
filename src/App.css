@@ -1090,3 +1090,82 @@
     grid-column: span 1;
   }
 }
+
+
+/* Header Status Summary at Top of Page */
+.header-status-summary {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  background-color: var(--bg-subtle);
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-subtle);
+}
+
+.header-status-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-muted);
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+}
+
+.header-status-item strong {
+  color: var(--text-main);
+  font-weight: 700;
+}
+
+.header-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot-prova { background-color: var(--color-prova); }
+.dot-apte { background-color: var(--color-apte); }
+.dot-diagnosi { background-color: var(--color-diagnosi); }
+.dot-prestat { background-color: var(--color-prestat); }
+
+/* Improved Table Status Select Dropdown */
+.inline-status-select {
+  appearance: none;
+  background-color: var(--bg-surface);
+  border: 1.5px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 6px 28px 6px 12px;
+  font-size: 13px;
+  font-family: inherit;
+  font-weight: 600;
+  color: var(--text-main);
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%230284c7' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  transition: all 0.15s ease-in-out;
+  box-shadow: var(--shadow-sm);
+}
+
+.inline-status-select:hover {
+  border-color: var(--color-primary);
+  background-color: var(--bg-surface-hover);
+}
+
+.inline-status-select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-light);
+}
+
+@media (max-width: 900px) {
+  .header-status-summary {
+    width: 100%;
+    justify-content: space-around;
+  }
+}

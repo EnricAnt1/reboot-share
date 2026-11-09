@@ -3,20 +3,20 @@ import { CheckCircleIcon, ClockIcon, AlertIcon, ShareIcon } from './Icons';
 export function StatsCards({ devices, activeFilter, onFilterChange }) {
   const counts = {
     total: devices.length,
-    apte: devices.filter((d) => d.status === 'Apte').length,
     enProva: devices.filter((d) => d.status === 'En prova').length,
+    apte: devices.filter((d) => d.status === 'Apte').length,
     diagnosi: devices.filter((d) => d.status === 'Diagnosi').length,
     prestat: devices.filter((d) => d.status === 'Prestat').length,
   };
 
   const cards = [
     {
-      id: 'Tots',
-      title: 'Total dispositius',
-      count: counts.total,
-      description: 'Inventari registrat',
-      colorClass: 'card-total',
-      icon: null,
+      id: 'En prova',
+      title: 'En prova',
+      count: counts.enProva,
+      description: 'En verificació tècnica',
+      colorClass: 'card-en-prova',
+      icon: <ClockIcon />,
     },
     {
       id: 'Apte',
@@ -25,14 +25,6 @@ export function StatsCards({ devices, activeFilter, onFilterChange }) {
       description: 'Llestos per a cessió',
       colorClass: 'card-apte',
       icon: <CheckCircleIcon />,
-    },
-    {
-      id: 'En prova',
-      title: 'En prova',
-      count: counts.enProva,
-      description: 'En verificació tècnica',
-      colorClass: 'card-en-prova',
-      icon: <ClockIcon />,
     },
     {
       id: 'Diagnosi',
@@ -50,10 +42,18 @@ export function StatsCards({ devices, activeFilter, onFilterChange }) {
       colorClass: 'card-prestat',
       icon: <ShareIcon />,
     },
+    {
+      id: 'Tots',
+      title: 'Total dispositius',
+      count: counts.total,
+      description: 'Inventari registrat',
+      colorClass: 'card-total',
+      icon: null,
+    },
   ];
 
   return (
-    <section className="stats-grid" aria-label="Resum de l'inventari">
+    <section className="stats-grid" aria-label="Recompte de dispositius per estat">
       {cards.map((card) => {
         const isSelected = activeFilter === card.id;
         return (
@@ -63,6 +63,7 @@ export function StatsCards({ devices, activeFilter, onFilterChange }) {
             className={`stat-card ${card.colorClass} ${isSelected ? 'is-active' : ''}`}
             onClick={() => onFilterChange(card.id)}
             aria-pressed={isSelected}
+            title={`Filtrar per: ${card.title} (${card.count})`}
           >
             <div className="stat-card-top">
               <span className="stat-title">{card.title}</span>
