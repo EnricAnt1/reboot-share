@@ -1,0 +1,6 @@
+[
+  {"bench":"REBOOT-BP1","test":1,"deviceId":"T-01","tempC":[34.5,35.0,35.2,35.1,35.5],"maxTempC":35.5,"batteryPct":90,"result":"Apte","reasons":[]},
+  {"bench":"REBOOT-BP1","test":2,"deviceId":"T-02","tempC":[40.1,48.5,59.2,65.4,70.1],"maxTempC":70.1,"batteryPct":85,"result":"Diagnosi","reasons":["Temperatura alta"]},
+  {"bench":"REBOOT-BP1","test":3,"deviceId":"T-03","tempC":[34.8,35.1,35.0,35.2,35.1],"maxTempC":35.2,"batteryPct":65,"result":"Diagnosi","reasons":["Bateria baixa"]},
+  {"bench":"REBOOT-BP1","test":4,"deviceId":"T-04","tempC":[60.0,60.0,60.0,60.0,60.0],"maxTempC":60.0,"batteryPct":80,"result":"Apte","reasons":[]}
+]
